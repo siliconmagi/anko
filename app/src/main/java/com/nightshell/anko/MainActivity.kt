@@ -1,15 +1,19 @@
 package com.nightshell.anko
 
-import android.support.v7.app.AppCompatActivity
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.widget.RelativeLayout
 import org.jetbrains.anko.*
+import org.jetbrains.anko.sdk25.coroutines.onClick
 
 class MainActivity : AppCompatActivity() {
 
+    @SuppressLint("ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         relativeLayout{
+            var times = 0
             editText{
                 id = 1
                 hint = "name"
@@ -28,6 +32,9 @@ class MainActivity : AppCompatActivity() {
             }
             button ("Set"){
                 id = 3
+                onClick {
+                    toast("Clicked ${++times} times")
+                }
             }.lparams {
                 below(1)
                 alignParentRight()
